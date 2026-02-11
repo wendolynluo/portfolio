@@ -262,7 +262,7 @@ a{color:var(--cyan);text-decoration:none}
 <div class="gdr">
 <div class="gdc"><div class="gdv" style="color:var(--green)" data-t="90" data-s="%">0</div><div class="gdl">内容选用率</div><div class="gds">从不足50%提升</div></div>
 <div class="gdc"><div class="gdv" style="color:var(--cyan)" data-t="180" data-s="条">0</div><div class="gdl">日均供给量</div><div class="gds">从80条增长125%</div></div>
-<div class="gdc"><div class="gdv" style="color:var(--purple)" data-t="15" data-s="%+">0</div><div class="gdl">号外选题拉动比</div><div class="gds">持续稳定输出</div></div>
+<div class="gdc"><div class="gdv" style="color:var(--purple)" data-t="18" data-s="%+">0</div><div class="gdl">号外选题拉动比</div><div class="gds">持续稳定输出</div></div>
 <div class="gdc"><div class="gdv" style="color:var(--orange)" data-t="100" data-s="+">0</div><div class="gdl">爆款内容产出</div><div class="gds">多次冲上榜一</div></div>
 </div>
 </div>
@@ -272,18 +272,18 @@ a{color:var(--cyan);text-decoration:none}
 <section class="sec" id="tools" style="background:#0d1220">
 <div class="reveal"><div class="sec-label">Tool Matrix</div><div class="sec-title">自研效率工具集</div><div class="sec-desc">从发现业务痛点到独立设计、开发、部署——覆盖4种技术形态，累计迭代数十个版本，部分工具仍在持续优化中。</div></div>
 <div class="lp reveal">
-<div class="tcl">📦 Web 应用</div>
+<div class="tcl">📦 效率提升工具</div>
 <div class="ti" onclick="stm(0)"><div class="t-icon w">🔗<span class="tv">v5.1</span></div><div class="tn">链接提取器</div></div>
 <div class="ti" onclick="stm(1)"><div class="t-icon w">🖼️<span class="tv">v5.0</span></div><div class="tn">图片存储管理</div></div>
 <div class="ti" onclick="stm(2)"><div class="t-icon w">🚫</div><div class="tn">敏感词检测</div></div>
-<div class="tcl">🧩 Chrome 扩展</div>
+<div class="tcl">🧩 浏览器插件</div>
 <div class="ti" onclick="stm(3)"><div class="t-icon c">📋<span class="tv">v1.1</span></div><div class="tn">新闻对比扩展</div></div>
 <div class="ti" onclick="stm(4)"><div class="t-icon c">⚠️</div><div class="tn">敏感词检测扩展</div></div>
-<div class="tcl">📱 微信小程序</div>
+<div class="tcl">📱 多人协作平台</div>
 <div class="ti" onclick="stm(5)"><div class="t-icon m">📝</div><div class="tn">报题协作小程序</div></div>
-<div class="tcl">🐍 Python 后端</div>
+<div class="tcl">🐍 智能消息管理</div>
 <div class="ti" onclick="stm(6)"><div class="t-icon p">💬</div><div class="tn">企微群消息管理</div></div>
-<div class="tcl">📄 流程设计 & 文档</div>
+<div class="tcl">📄 流程规范设计</div>
 <div class="ti" onclick="stm(7)"><div class="t-icon dc">📋</div><div class="tn">春节AI预埋项目收稿SOP</div></div>
 <div class="ti" onclick="stm(8)"><div class="t-icon dc">🔄</div><div class="tn">云雀检查流程图</div></div>
 </div>
@@ -391,15 +391,15 @@ if(cf===n){cf=null;return}cf=n;document.querySelector(`.fn[data-f="${n}"]`).clas
 
 // TOOLS DATA
 const T=[
-{n:'链接数据提取器',tp:'Web应用 · v5.1（已部署云端）',i:'🔗',ic:'w',d:'从各种格式的URL或文本中批量提取腾讯新闻文章ID。支持3种提取模式（挖掘报题/TOP巡查/看板数据），含反向检索功能。已部署至Netlify供团队共享。',p:'💡 插件工作每天处理大量新闻链接，手动提取ID耗时且易错。',s:['3种提取模式','已云端部署','团队共享使用']},
-{n:'图片存储管理应用',tp:'Web应用+LeanCloud · v5.0',i:'🖼️',ic:'w',d:'云端图片管理与智能配图工具。输入标题自动提取关键词、中英翻译、搜索图库。支持752×320标准裁剪、拼图、AI图片增强。内置500+中英翻译词典。自主摸索接入腾讯混元大模型，实现AI智能辅助。',p:'💡 新闻配图依赖人工搜索，效率低且风格不统一。',s:['LeanCloud云存储','接入混元大模型','500+翻译词典']},
-{n:'Excel敏感词检测工具',tp:'Web应用',i:'🚫',ic:'w',d:'上传Excel文件后根据自定义敏感词列表逐行扫描检测。支持高亮显示、结果统计、多格式导出（Excel/CSV/JSON）。',p:'💡 合作媒体提交内容中偶有敏感词，人工逐条检查效率极低。',s:['拖拽上传','高亮标记','3种导出格式','批量扫描']},
-{n:'新闻对比Chrome扩展',tp:'Chrome扩展(Manifest V3) · v1.1',i:'📋',ic:'c',d:'对比两篇新闻内容差异的专业工具。用四种颜色高亮标记新增、删除、修改和保留内容，自动计算标题和正文的相似度百分比。支持从腾讯新闻、新华网等主流站点自动抓取正文。',p:'💡 内容安全核查要求极高，人工逐字比对效率低、易遗漏。',s:['6大新闻站适配','一键抓取','四色高亮','相似度计算']},
-{n:'表格敏感词检测扩展',tp:'Chrome扩展(Manifest V3)',i:'⚠️',ic:'c',d:'直接在网页中扫描表格内容的Chrome扩展。支持剪贴板检测和网页检测两种模式，专门适配腾讯文档。预设4类敏感词库。',p:'💡 腾讯文档为Canvas渲染，常规工具无法直接检测表格内容。',s:['腾讯文档适配','4类预设词库','高亮标记']},
-{n:'报题协作工作台',tp:'微信小程序 · 18个页面',i:'📝',ic:'m',d:'三角色（管理者/审核者/报题者）选题协作管理平台。完整选题生命周期：报题→审核→优先级→制作→回填→导出。',p:'💡 多家媒体分别填表的协作方式过于分散，人力浪费在信息汇总上。',s:['18个页面模块','3种角色权限','协作码机制','数据导出']},
-{n:'企微群消息管理',tp:'Python Flask · 前后端分离',i:'💬',ic:'p',d:'企业微信群消息智能分类管理系统。自动识别约稿需求和回稿，智能匹配约稿-回稿关系。含管理后台统计看板。',p:'💡 群聊中约稿和回稿消息混杂，人工追踪匹配费时费力。',s:['Flask后端','智能分类','自动匹配','管理后台']},
-{n:'春节AI预埋项目收稿SOP',tp:'流程设计文档',i:'📋',ic:'dc',d:'春节期间AI预埋项目内容收稿的标准化操作流程文档。涵盖选题征集、内容审核、发布排期、数据复盘全流程。',p:'💡 春节人员轮换频繁，需标准化流程确保内容质量不下降。',s:['全流程覆盖','角色职责明确','可复用模板']},
-{n:'云雀检查流程图',tp:'可视化流程设计',i:'🔄',ic:'dc',d:'云雀视频优化的7步标准化协作流程图。明确CP→协调员→云雀三方角色分工，含分支决策路径。',p:'💡 视频检查涉及多方协作，需清晰流程规范减少沟通摩擦。',s:['7步标准流程','3方角色协作','分支决策']}
+{n:'链接数据提取器',tp:'3种提取模式 · 反向检索 · 团队共享',i:'🔗',ic:'w',d:'从各种格式的URL或文本中批量提取腾讯新闻文章ID。支持3种提取模式（挖掘报题/TOP巡查/看板数据），含反向检索功能。已部署至Netlify供团队共享。',p:'💡 插件工作每天处理大量新闻链接，手动提取ID耗时且易错。',s:['3种提取模式','反向检索','批量处理','团队共享']},
+{n:'图片存储管理应用',tp:'AI智能配图 · 混元大模型 · 云端存储',i:'🖼️',ic:'w',d:'云端图片管理与智能配图工具。输入标题自动提取关键词、中英翻译、搜索图库。支持752×320标准裁剪、拼图、AI图片增强。内置500+中英翻译词典。自主摸索接入腾讯混元大模型，实现AI智能辅助。',p:'💡 新闻配图依赖人工搜索，效率低且风格不统一。',s:['AI智能配图','混元大模型','500+翻译词典','标准裁剪']},
+{n:'Excel敏感词检测工具',tp:'批量扫描 · 高亮标记 · 多格式导出',i:'🚫',ic:'w',d:'上传Excel文件后根据自定义敏感词列表逐行扫描检测。支持高亮显示、结果统计、多格式导出（Excel/CSV/JSON）。',p:'💡 合作媒体提交内容中偶有敏感词，人工逐条检查效率极低。',s:['拖拽上传','高亮标记','3种导出格式','批量扫描']},
+{n:'新闻对比Chrome扩展',tp:'四色高亮 · 相似度计算 · 一键抓取',i:'📋',ic:'c',d:'对比两篇新闻内容差异的专业工具。用四种颜色高亮标记新增、删除、修改和保留内容，自动计算标题和正文的相似度百分比。支持从腾讯新闻、新华网等主流站点自动抓取正文。',p:'💡 内容安全核查要求极高，人工逐字比对效率低、易遗漏。',s:['6大新闻站适配','一键抓取','四色高亮','相似度计算']},
+{n:'表格敏感词检测扩展',tp:'腾讯文档适配 · 双模式检测 · 预设词库',i:'⚠️',ic:'c',d:'直接在网页中扫描表格内容的Chrome扩展。支持剪贴板检测和网页检测两种模式，专门适配腾讯文档。预设4类敏感词库。',p:'💡 腾讯文档为Canvas渲染，常规工具无法直接检测表格内容。',s:['腾讯文档适配','4类预设词库','高亮标记']},
+{n:'报题协作工作台',tp:'三角色协作 · 全生命周期 · 数据导出',i:'📝',ic:'m',d:'三角色（管理者/审核者/报题者）选题协作管理平台。完整选题生命周期：报题→审核→优先级→制作→回填→导出。',p:'💡 多家媒体分别填表的协作方式过于分散，人力浪费在信息汇总上。',s:['18个页面模块','3种角色权限','协作码机制','数据导出']},
+{n:'企微群消息管理',tp:'智能匹配 · 自动分类 · 管理看板',i:'💬',ic:'p',d:'企业微信群消息智能分类管理系统。自动识别约稿需求和回稿，智能匹配约稿-回稿关系。含管理后台统计看板。',p:'💡 群聊中约稿和回稿消息混杂，人工追踪匹配费时费力。',s:['智能分类','自动匹配','管理看板','消息追踪']},
+{n:'春节AI预埋项目收稿SOP',tp:'全流程覆盖 · 角色分工 · 可复用模板',i:'📋',ic:'dc',d:'春节期间AI预埋项目内容收稿的标准化操作流程文档。涵盖选题征集、内容审核、发布排期、数据复盘全流程。',p:'💡 春节人员轮换频繁，需标准化流程确保内容质量不下降。',s:['全流程覆盖','角色职责明确','可复用模板']},
+{n:'云雀检查流程图',tp:'多方协作 · 标准化流程 · 分支决策',i:'🔄',ic:'dc',d:'云雀视频优化的7步标准化协作流程图。明确CP→协调员→云雀三方角色分工，含分支决策路径。',p:'💡 视频检查涉及多方协作，需清晰流程规范减少沟通摩擦。',s:['7步标准流程','3方角色协作','分支决策']}
 ];
 const icm={'w':'t-icon w','c':'t-icon c','m':'t-icon m','p':'t-icon p','d':'t-icon d','dc':'t-icon dc'};
 function stm(i){const t=T[i];document.getElementById('tmi').className='m-icon t-icon '+t.ic;document.getElementById('tmi').innerHTML='<span style="font-size:28px">'+t.i+'</span>';
