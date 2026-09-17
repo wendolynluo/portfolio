@@ -1,15 +1,88 @@
-元宝 webview 能力测试页
-用于验证：① file input 能否弹出「拍照/相册」并回传图片　② getUserMedia 摄像头权限是否可用
-1. 当前环境信息
-⚠️ 非 HTTPS，getUserMedia 必失败getUserMedia: 支持
-Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36
-2. file input 测试（核心项）
-点击下方按钮。预期：弹出系统原生的「拍照 / 从相册选择」，选择后图片显示在下方即代表回传成功。
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>元宝 webview 能力测试页</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", sans-serif; background: #f5f6f8; color: #222; padding: 16px; max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  .sub { font-size: 13px; color: #888; margin-bottom: 20px; }
+  section { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+  h2 { font-size: 15px; margin-bottom: 10px; }
+  p { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 10px; }
+  pre { font-size: 11px; background: #f0f1f3; border-radius: 8px; padding: 10px; white-space: pre-wrap; word-break: break-all; color: #444; }
+  .btn { display: block; width: 100%; text-align: center; background: #185FA5; color: #fff; font-size: 16px; padding: 14px; border-radius: 10px; border: none; cursor: pointer; }
+  .btn:active { opacity: .8; }
+  input[type=file] { display: none; }
+  .result { margin-top: 12px; font-size: 13px; line-height: 1.6; }
+  .ok { color: #0F6E56; font-weight: 600; }
+  .fail { color: #A32D2D; font-weight: 600; }
+  img.preview, video.preview { width: 100%; border-radius: 10px; margin-top: 10px; background: #000; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #E6F1FB; color: #185FA5; margin-right: 6px; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+<h1>元宝 webview 能力测试页</h1>
+<div class="sub">用于验证：① file input 能否弹出「拍照/相册」并回传图片　② getUserMedia 摄像头权限是否可用</div>
 
-选择 / 拍摄图片
-尚未选择图片
-3. getUserMedia 摄像头测试（附加项）
-点击后若弹出摄像头授权并出现实时画面，说明美修未来可做自绘取景框；若报错不影响主方案。
+<section>
+  <h2>1. 当前环境信息</h2>
+  <div id="envTags"></div>
+  <pre id="ua">加载中…</pre>
+</section>
 
-尝试调用摄像头
-未测试
+<section>
+  <h2>2. file input 测试（核心项）</h2>
+  <p>点击下方按钮。<b>预期</b>：弹出系统原生的「拍照 / 从相册选择」，选择后图片显示在下方即代表回传成功。</p>
+  <label class="btn" for="fileInput">选择 / 拍摄图片</label>
+  <input type="file" accept="image/*" id="fileInput">
+  <div class="result" id="fileResult">尚未选择图片</div>
+</section>
+
+<section>
+  <h2>3. getUserMedia 摄像头测试（附加项）</h2>
+  <p>点击后若弹出摄像头授权并出现实时画面，说明美修未来可做自绘取景框；若报错不影响主方案。</p>
+  <button class="btn" id="gumBtn">尝试调用摄像头</button>
+  <video id="video" class="preview" playsinline muted autoplay style="display:none"></video>
+  <div class="result" id="gumResult">未测试</div>
+</section>
+
+<script>
+document.getElementById('ua').textContent = navigator.userAgent;
+
+var httpsOk = location.protocol === 'https:';
+var gumSupport = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+document.getElementById('envTags').innerHTML =
+  '<span class="tag">' + (httpsOk ? 'HTTPS ✓' : '⚠️ 非 HTTPS，getUserMedia 必失败') + '</span>' +
+  '<span class="tag">' + (gumSupport ? 'getUserMedia: 支持' : 'getUserMedia: 不支持') + '</span>';
+
+document.getElementById('fileInput').addEventListener('change', function (e) {
+  var f = e.target.files && e.target.files[0];
+  var box = document.getElementById('fileResult');
+  if (!f) { box.innerHTML = '<span class="fail">未拿到文件，可能被 webview 拦截</span>'; return; }
+  box.innerHTML = '<span class="ok">✓ 拿到图片，回传成功</span><br>文件名：' + f.name +
+    '<br>类型：' + f.type + '　大小：' + (f.size / 1024).toFixed(0) + ' KB';
+  var img = document.createElement('img');
+  img.className = 'preview';
+  img.src = URL.createObjectURL(f);
+  box.appendChild(img);
+});
+
+document.getElementById('gumBtn').addEventListener('click', function () {
+  var box = document.getElementById('gumResult');
+  var v = document.getElementById('video');
+  if (!gumSupport) { box.innerHTML = '<span class="fail">✗ 环境不支持 getUserMedia（webview 未开放），需保留 file input 兜底</span>'; return; }
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false })
+    .then(function (stream) {
+      v.srcObject = stream; v.style.display = 'block';
+      box.innerHTML = '<span class="ok">✓ 摄像头流获取成功，webview 权限已放行，可做自绘取景框</span>';
+    })
+    .catch(function (err) {
+      box.innerHTML = '<span class="fail">✗ 获取失败：' + err.name + ' — ' + err.message + '</span>';
+    });
+});
+</script>
+</body>
+</html>
