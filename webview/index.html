@@ -1,0 +1,15 @@
+元宝 webview 能力测试页
+用于验证：① file input 能否弹出「拍照/相册」并回传图片　② getUserMedia 摄像头权限是否可用
+1. 当前环境信息
+⚠️ 非 HTTPS，getUserMedia 必失败getUserMedia: 支持
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36
+2. file input 测试（核心项）
+点击下方按钮。预期：弹出系统原生的「拍照 / 从相册选择」，选择后图片显示在下方即代表回传成功。
+
+选择 / 拍摄图片
+尚未选择图片
+3. getUserMedia 摄像头测试（附加项）
+点击后若弹出摄像头授权并出现实时画面，说明美修未来可做自绘取景框；若报错不影响主方案。
+
+尝试调用摄像头
+未测试
